@@ -2,6 +2,7 @@ package br.com.udemy.vendas.domain.controller;
 
 import br.com.udemy.vendas.domain.entity.Cliente;
 import br.com.udemy.vendas.domain.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,13 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> cadastrar(@Valid @RequestBody Cliente cliente) {
         Cliente clienteSalvo = clienteRepository.save(cliente);
         return ResponseEntity.ok(clienteSalvo);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Cliente> atualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualizar(@Valid @PathVariable Integer id, @RequestBody Cliente cliente) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
             Cliente clienteAtualizado = clienteOptional.get();

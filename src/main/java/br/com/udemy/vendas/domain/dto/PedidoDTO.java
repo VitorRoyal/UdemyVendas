@@ -1,24 +1,24 @@
 package br.com.udemy.vendas.domain.dto;
 
+import br.com.udemy.vendas.domain.validadores.NotEmptyList;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-public record PedidoDTO(Integer cliente, BigDecimal total, List<ItemPedidoDTO> itens, Integer quantidade) {
-    // VEM O ID DO CLIENTE, O TOTAL DO PEDIDO, UMA LISTA DE ITENS E A QUANTIDADE DE PRODUTOS
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PedidoDTO {
 
-    public Integer getCliente() {
-        return cliente;
-    }
+    @NotNull(message = "{campo.codigo-cliente.obrigatorio}")
+    private Integer cliente;
+    @NotNull(message = "{campo.total-pedido.obrigatorio}")
+    private BigDecimal total;
+    @NotEmptyList(message = "{campo.items-pedido.obrigatorio}")
+    private List<ItemPedidoDTO> itens;
 
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public List<ItemPedidoDTO> getItens() {
-        return itens;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
 }

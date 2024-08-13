@@ -2,6 +2,7 @@ package br.com.udemy.vendas.domain.controller;
 
 import br.com.udemy.vendas.domain.entity.Produto;
 import br.com.udemy.vendas.domain.repository.ProdutoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,12 @@ public class ProdutoController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto) {
+    public ResponseEntity<Produto> cadastrar(@Valid @RequestBody Produto produto) {
         return ResponseEntity.ok(produtoRepository.save(produto));
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Integer id, @RequestBody Produto produto) {
+    public ResponseEntity<Produto> atualizar(@Valid @PathVariable Integer id, @RequestBody Produto produto) {
         return produtoRepository.findById(id)
                 .map(produtoExistente -> {
                     produto.setId(produtoExistente.getId());
