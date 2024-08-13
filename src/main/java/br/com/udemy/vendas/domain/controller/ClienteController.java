@@ -30,7 +30,7 @@ public class ClienteController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity atualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
             Cliente clienteAtualizado = clienteOptional.get();

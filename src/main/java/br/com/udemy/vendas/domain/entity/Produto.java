@@ -1,10 +1,18 @@
 package br.com.udemy.vendas.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,38 +20,5 @@ public class Produto {
     private String descricao;
     @Column(name = "preco_unitario")
     private BigDecimal preco;
-
-    public Produto() {
-    }
-
-    public Produto(Integer id, String descricao, BigDecimal preco) {
-        this.id = id;
-        this.descricao = descricao;
-        this.preco = preco;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public BigDecimal getPreco() {
-        return this.preco;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
 
 }
